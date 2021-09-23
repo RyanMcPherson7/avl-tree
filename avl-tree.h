@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 
 struct Student {
@@ -21,11 +22,13 @@ struct TreeNode {
 };
 
 class AvlTree {
-    TreeNode* root;
+    // TreeNode* root;
 
     // helper functions
     TreeNode* insertHelper(TreeNode* root, Student& newStudent);
 public: 
+
+    TreeNode* root;
 
     AvlTree() : root(nullptr) {}
     AvlTree(int id, std::string name);

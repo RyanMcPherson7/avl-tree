@@ -3,11 +3,18 @@
 
 int main() {
 
-    AvlTree tree = AvlTree(12341234, "name");
+    AvlTree tree = AvlTree(5, "name");
     // AvlTree tree = AvlTree();
 
-    tree.insert("supa cool name", 44444444);
-    tree.insert("other name...", 11111111);
+    tree.insert("supa cool name", 3);
+    tree.insert("other name...", 7);
+    tree.insert("other name...", 4);
+    tree.insert("other name...", 2);
+    tree.insert("other name...", 8);
+    tree.insert("other name...", 9);
+
+
+    std::cout << tree.root->right->balanceFactor;
 
     return 0;
 }

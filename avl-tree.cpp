@@ -7,14 +7,37 @@ AvlTree::AvlTree(int id, std::string name) {
 
 TreeNode* AvlTree::insertHelper(TreeNode* root, Student& newStudent) {
 
-    // still need to change node heights and balance tree if necessary
-
     if (!root) return new TreeNode(newStudent);
 
+    // inserting node
     if (newStudent.id < root->student.id)
         root->left = insertHelper(root->left, newStudent);
-    else    
+    else if (newStudent.id > root->student.id)  
         root->right = insertHelper(root->right, newStudent);
+    else
+        std::cout << "unsuccessful";
+
+
+    // computing new height
+    if (root->right && root->left)
+        root->height = 1 + std::max(root->left->height, root->right->height);
+    else if (root->left)
+        root->height = 1 + root->left->height;
+    else 
+        root->height = 1 + root->right->height;
+
+
+    // computing new balance factor
+    if (root->right && root->left)
+        root->balanceFactor = root->left->height - root->right->height;
+    else if (root->left)
+        root->balanceFactor = root->left->height;
+    else  
+        root->balanceFactor = -1 * root->right->height;
+
+
+    // balancing tree if necessary
+    // do epic rotations here!
 
     return root;
 }
