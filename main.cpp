@@ -3,13 +3,18 @@
 
 int main() {
 
-    // AvlTree tree = AvlTree(0, "name");
-    AvlTree tree = AvlTree();
+    AvlTree tree = AvlTree(21, "name2");
+    // AvlTree tree = AvlTree();
 
-    for (int i = 1; i < 21; i++) 
-        tree.insert("name", i);
+    // for (int i = 1; i < 5; i++) 
+    //     tree.insert("name", i);
 
-    std::cout << tree.root->height;
+    tree.insert("name3", 3);
+    tree.insert("name1", 2);
+
+
+    std::cout << tree.root->student.name << std::endl;
+
 
     return 0;
 }

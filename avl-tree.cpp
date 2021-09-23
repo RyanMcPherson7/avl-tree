@@ -6,7 +6,7 @@ AvlTree::AvlTree(int id, std::string name) {
 }
 
 TreeNode* AvlTree::rotateLeft(TreeNode* node) {
-
+    std::cout << "performing left rotate" << std::endl;
     TreeNode* grandchild = node->right->left;
     TreeNode* newParent = node->right;
     newParent->left = node;
@@ -15,7 +15,7 @@ TreeNode* AvlTree::rotateLeft(TreeNode* node) {
 }
 
 TreeNode* AvlTree::rotateRight(TreeNode* node) {
-
+    std::cout << "performing right rotate" << std::endl;
     TreeNode* grandchild = node->left->right;
     TreeNode* newParent = node->left;
     newParent->right = node;
@@ -24,12 +24,12 @@ TreeNode* AvlTree::rotateRight(TreeNode* node) {
 }
 
 TreeNode* AvlTree::rotateLeftRight(TreeNode* node) {
-    
+    std::cout << "performing left right rotate" << std::endl;
     return rotateRight(rotateLeft(root));
 }
 
 TreeNode* AvlTree::rotateRightLeft(TreeNode* node) {
-    
+    std::cout << "performing right left rotate" << std::endl;
     return rotateLeft(rotateRight(root));
 }
 
@@ -53,37 +53,39 @@ TreeNode* AvlTree::insertHelper(TreeNode* root, Student& newStudent) {
     }
         
 
-    // computing new height
-    if (root->right && root->left)
+    // computing node's height and balance factor
+    if (root->right && root->left) {
         root->height = 1 + std::max(root->left->height, root->right->height);
-    else if (root->left)
-        root->height = 1 + root->left->height;
-    else 
-        root->height = 1 + root->right->height;
-
-
-    // computing new balance factor
-    if (root->right && root->left)
         root->balanceFactor = root->left->height - root->right->height;
-    else if (root->left)
+    }
+    else if (root->left) {
+        root->height = 1 + root->left->height;
         root->balanceFactor = root->left->height;
-    else  
+    }
+    else {
+        root->height = 1 + root->right->height;
         root->balanceFactor = -1 * root->right->height;
-
+    }
+        
 
     // balancing tree if necessary
     // do epic rotations here!
+    // we'll have to recalculate the balance factors here again
     
-    // if (root->balanceFactor == 2)
-    //     if (root->left->balanceFactor == 1)
-    //         return rotateRight(root);
-    //     else    
-    //         return rotateLeftRight(root);
-    // else if (root->balanceFactor == -2)
-    //     if (root->right->balanceFactor == -1)
-    //         return rotateLeft(root);
-    //     else 
-    //         return rotateRightLeft(root);
+    if (root->balanceFactor == 2) {
+        if (root->left->balanceFactor == 1)
+            return rotateRight(root);
+        else    
+            return rotateLeftRight(root);
+    }
+        
+    else if (root->balanceFactor == -2) {
+        if (root->right->balanceFactor == -1)
+            return rotateLeft(root);
+        else 
+            return rotateRightLeft(root);
+    }
+        
 
     // if (root->balanceFactor == 2)
     //     if (root->left->balanceFactor == 1)
