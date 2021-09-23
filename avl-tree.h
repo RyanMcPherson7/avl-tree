@@ -26,6 +26,10 @@ class AvlTree {
 
     // helper functions
     TreeNode* insertHelper(TreeNode* root, Student& newStudent);
+    TreeNode* rotateLeft(TreeNode* node);
+    TreeNode* rotateRight(TreeNode* node);
+    TreeNode* rotateLeftRight(TreeNode* node);
+    TreeNode* rotateRightLeft(TreeNode* node);
 public: 
 
     TreeNode* root;
