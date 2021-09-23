@@ -17,21 +17,18 @@ struct TreeNode {
     TreeNode* left;
     TreeNode* right;
 
-    TreeNode(Student& x) : student(x), height(0), balanceFactor(0), left(nullptr), right(nullptr) {}
+    TreeNode(Student& x) : student(x), height(1), balanceFactor(0), left(nullptr), right(nullptr) {}
 };
 
 class AvlTree {
-
     TreeNode* root;
+
+    // helper functions
+    TreeNode* insertHelper(TreeNode* root, Student& newStudent);
 public: 
 
     AvlTree() : root(nullptr) {}
-
-    // move to cpp file later
-    AvlTree(int id, std::string name) {
-        Student newStudent = Student(id, name);
-        root = new TreeNode(newStudent); 
-    }
+    AvlTree(int id, std::string name);
 
     void insert(std::string name, int id);
     void remove(int id);
