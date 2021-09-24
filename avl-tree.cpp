@@ -198,21 +198,26 @@ void AvlTree::searchId(std::string id) {
 // }
 
 
-void AvlTree::searchNameHelper(TreeNode* node, std::string name) {
+void AvlTree::searchNameHelper(TreeNode* node, std::string name, std::string& output) {
 
     if (node) {
         if (node->name == name)
-            std::cout << node->id << std::endl;
+            output += node->id + "\n";
         
-        searchNameHelper(node->left, name);
-        searchNameHelper(node->right, name);
+        searchNameHelper(node->left, name, output);
+        searchNameHelper(node->right, name, output);
     }
-
-    // TODO: does NOT print "unsuccessful if cannot be found"
 }
 
 void AvlTree::searchName(std::string name) {
-    searchNameHelper(root, name);
+
+    std::string output = "";
+    searchNameHelper(root, name, output);
+
+    if (output == "")
+        std::cout << "unsuccessful" << std::endl;
+    else 
+        std::cout << output;
 }
 
 
