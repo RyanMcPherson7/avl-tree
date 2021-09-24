@@ -17,12 +17,11 @@ int main() {
     tree.insert("7", "00000007");
     tree.insert("98", "00000098");
     tree.insert("18", "00000018");
-    // tree.insert("19", "00000019");
+    tree.insert("19", "00000019");
 
-    // THIS edge case seems to be incorrect pls fix 
     // pretty sure rightLeft and leftRight are still broken...
 
-    std::cout << tree.root->left->right->right->name;
+    std::cout << tree.root->right->left->name << std::endl;
 
     // tree.printLevelCount();
 
