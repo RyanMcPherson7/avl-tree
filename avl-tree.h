@@ -17,7 +17,7 @@ struct TreeNode {
 };
 
 class AvlTree {
-    TreeNode* root;
+    // TreeNode* root;
 
     // helper functions
     TreeNode* insertHelper(TreeNode* root, std::string name, std::string id);
@@ -32,6 +32,8 @@ class AvlTree {
     void preorderHelper(TreeNode* node);
     void postorderHelper(TreeNode* node);
 public: 
+
+    TreeNode* root;
 
     AvlTree() : root(nullptr) {}
     void insert(std::string name, std::string id);  // almost 

@@ -29,9 +29,11 @@ TreeNode* AvlTree::rotateLeft(TreeNode* node) {
     newParent->left = node;
     node->right = grandchild;
 
-    // // computing node's height and balance factor
-    // computeHeightandBalance(node);
-    // computeHeightandBalance(newParent);
+    if (node == root) root = newParent;
+
+    // computing node's height and balance factor
+    computeHeightandBalance(node);
+    computeHeightandBalance(newParent);
 
     return newParent;
 }
@@ -43,9 +45,11 @@ TreeNode* AvlTree::rotateRight(TreeNode* node) {
     newParent->right = node;
     node->left = grandchild;
 
-    // // computing node's height and balance factor
-    // computeHeightandBalance(node);
-    // computeHeightandBalance(newParent);
+    if (node == root) root = newParent;
+
+    // computing node's height and balance factor
+    computeHeightandBalance(node);
+    computeHeightandBalance(newParent);
 
     return newParent;
 }
@@ -91,19 +95,19 @@ TreeNode* AvlTree::insertHelper(TreeNode* node, std::string name, std::string id
     // we'll have to recalculate the balance factors here again
     // also seems like we're getting some out of bound error or something IDK
     
-    // if (node->balanceFactor == 2) {
-    //     if (node->left->balanceFactor == 1)
-    //         return rotateRight(node);
-    //     else    
-    //         return rotateLeftRight(node);
-    // }
+    if (node->balanceFactor == 2) {
+        if (node->left->balanceFactor == 1)
+            return rotateRight(node);
+        else    
+            return rotateLeftRight(node);
+    }
         
-    // else if (node->balanceFactor == -2) {
-    //     if (node->right->balanceFactor == -1)
-    //         return rotateLeft(node);
-    //     else 
-    //         return rotateRightLeft(node);
-    // }
+    else if (node->balanceFactor == -2) {
+        if (node->right->balanceFactor == -1)
+            return rotateLeft(node);
+        else 
+            return rotateRightLeft(node);
+    }
 
 
     return node;
