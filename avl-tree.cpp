@@ -48,74 +48,61 @@ TreeNode* AvlTree::rotateRight(TreeNode* node) {
 
 TreeNode* AvlTree::rotateLeftRight(TreeNode* node) {
     std::cout << "performing left right rotate" << std::endl;
-    return rotateRight(rotateLeft(root));
+    return rotateRight(rotateLeft(node));
 }
 
 TreeNode* AvlTree::rotateRightLeft(TreeNode* node) {
     std::cout << "performing right left rotate" << std::endl;
-    return rotateLeft(rotateRight(root));
+    return rotateLeft(rotateRight(node));
 }
 
 
 
-TreeNode* AvlTree::insertHelper(TreeNode* root, std::string name, std::string id) {
+TreeNode* AvlTree::insertHelper(TreeNode* node, std::string name, std::string id) {
 
-    if (!root) {
+    if (!node) {
         std::cout << "successful" << std::endl;
         return new TreeNode(name, id);
     }
 
     // inserting node
-    if (id < root->id)
-        root->left = insertHelper(root->left, name, id);
-    else if (id > root->id)  
-        root->right = insertHelper(root->right, name, id);
+    if (id < node->id)
+        node->left = insertHelper(node->left, name, id);
+    else if (id > node->id)  
+        node->right = insertHelper(node->right, name, id);
     else {
         std::cout << "unsuccessful" << std::endl;
-        return root;
+        return node;
     }
         
 
     // computing node's height and balance factor
-    computeHeightandBalance(root);
+    computeHeightandBalance(node);
 
 
-    // =====================
+    // =======================================================. 
     // TODO: insertion is correct until self balancing portion
 
     // balancing tree if necessary
-    // do epic rotations here!
     // we'll have to recalculate the balance factors here again
+    // also seems like we're getting some out of bound error or something IDK
     
-    // if (root->balanceFactor == 2) {
-    //     if (root->left->balanceFactor == 1)
-    //         return rotateRight(root);
+    // if (node->balanceFactor == 2) {
+    //     if (node->left->balanceFactor == 1)
+    //         return rotateRight(node);
     //     else    
-    //         return rotateLeftRight(root);
+    //         return rotateLeftRight(node);
     // }
         
-    // else if (root->balanceFactor == -2) {
-    //     if (root->right->balanceFactor == -1)
-    //         return rotateLeft(root);
+    // else if (node->balanceFactor == -2) {
+    //     if (node->right->balanceFactor == -1)
+    //         return rotateLeft(node);
     //     else 
-    //         return rotateRightLeft(root);
+    //         return rotateRightLeft(node);
     // }
-        
-
-    // if (root->balanceFactor == 2)
-    //     if (root->left->balanceFactor == 1)
-    //         rotateRight(root);
-    //     else    
-    //         rotateLeftRight(root);
-    // else if (root->balanceFactor == -2)
-    //     if (root->right->balanceFactor == -1)
-    //         rotateLeft(root);
-    //     else 
-    //         rotateRightLeft(root);
 
 
-
-    return root;
+    return node;
 }
 
 
@@ -150,52 +137,21 @@ void AvlTree::insert(std::string name, std::string id) {
 
 
 
-void AvlTree::searchIdHelper(TreeNode* root, std::string id) {
+void AvlTree::searchIdHelper(TreeNode* node, std::string id) {
 
-    if (!root) 
+    if (!node) 
         std::cout << "unsuccessful" << std::endl;
-    else if (id == root->id)
-        std::cout << root->name << std::endl;
-    else if (id < root->id)
-        searchIdHelper(root->left, id);
+    else if (id == node->id)
+        std::cout << node->name << std::endl;
+    else if (id < node->id)
+        searchIdHelper(node->left, id);
     else
-        searchIdHelper(root->right, id);
+        searchIdHelper(node->right, id);
 }
 
 void AvlTree::searchId(std::string id) {
     searchIdHelper(root, id);
 }
-
-
-
-
-// void AvlTree::searchName(std::string name) {
-
-//     std::queue<TreeNode*> q;
-//     if (root) q.push(root);
-//     std::string output = "";
-
-//     while (!q.empty()) {
-
-//         int size = q.size();
-        
-//         for (int i = 0; i < size; i++) {
-
-//             TreeNode* curr = q.front();
-//             if (curr->name == name)
-//                 output += curr->id + " ";
-
-//             if (curr->left) q.push(curr->left);
-//             if (curr->right) q.push(curr->right);
-//             q.pop();
-//         }   
-//     }
-
-//     if (output == "")
-//         std::cout << "unsuccessful" << std::endl;
-//     else 
-//         std::cout << output << std::endl;
-// }
 
 
 void AvlTree::searchNameHelper(TreeNode* node, std::string name, std::string& output) {
@@ -222,12 +178,12 @@ void AvlTree::searchName(std::string name) {
 
 
 
-void AvlTree::inorderHelper(TreeNode* root) {
+void AvlTree::inorderHelper(TreeNode* node) {
 
-    if (root) {
-        inorderHelper(root->left);
-        std::cout << root->name << ", ";
-        inorderHelper(root->right);
+    if (node) {
+        inorderHelper(node->left);
+        std::cout << node->name << ", ";
+        inorderHelper(node->right);
     }
 }
 
@@ -237,12 +193,12 @@ void AvlTree::printInorder() {
 }
 
 
-void AvlTree::preorderHelper(TreeNode* root) {
+void AvlTree::preorderHelper(TreeNode* node) {
 
-    if (root) {
-        std::cout << root->name << ", ";
-        preorderHelper(root->left);
-        preorderHelper(root->right);
+    if (node) {
+        std::cout << node->name << ", ";
+        preorderHelper(node->left);
+        preorderHelper(node->right);
     }
 }
 
@@ -252,12 +208,12 @@ void AvlTree::printPreorder() {
 }
 
 
-void AvlTree::postorderHelper(TreeNode* root) {
+void AvlTree::postorderHelper(TreeNode* node) {
 
-    if (root) {
-        postorderHelper(root->left);
-        postorderHelper(root->right);
-        std::cout << root->name << ", ";
+    if (node) {
+        postorderHelper(node->left);
+        postorderHelper(node->right);
+        std::cout << node->name << ", ";
     }
 }
 
