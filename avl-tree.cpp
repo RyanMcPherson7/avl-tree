@@ -23,7 +23,7 @@ void AvlTree::computeHeightandBalance(TreeNode* node) {
 
 
 TreeNode* AvlTree::rotateLeft(TreeNode* node) {
-    std::cout << "performing left rotate" << std::endl;
+    std::cout << " ~ performing left rotate" << std::endl;
     TreeNode* grandchild = node->right->left;
     TreeNode* newParent = node->right;
     newParent->left = node;
@@ -39,7 +39,7 @@ TreeNode* AvlTree::rotateLeft(TreeNode* node) {
 }
 
 TreeNode* AvlTree::rotateRight(TreeNode* node) {
-    std::cout << "performing right rotate" << std::endl;
+    std::cout << " ~ performing right rotate" << std::endl;
     TreeNode* grandchild = node->left->right;
     TreeNode* newParent = node->left;
     newParent->right = node;
@@ -55,13 +55,19 @@ TreeNode* AvlTree::rotateRight(TreeNode* node) {
 }
 
 TreeNode* AvlTree::rotateLeftRight(TreeNode* node) {
-    std::cout << "performing left right rotate" << std::endl;
-    return rotateRight(rotateLeft(node));
+    std::cout << " ~ performing left right rotate" << std::endl;
+    // return rotateRight(rotateLeft(node));
+
+    rotateLeft(node->left);
+    return rotateRight(node);
 }
 
 TreeNode* AvlTree::rotateRightLeft(TreeNode* node) {
-    std::cout << "performing right left rotate" << std::endl;
-    return rotateLeft(rotateRight(node));
+    std::cout << " ~ performing right left rotate" << std::endl;
+    // return rotateLeft(rotateRight(node));
+
+    rotateRight(node->right);
+    return rotateLeft(node);
 }
 
 
@@ -87,13 +93,8 @@ TreeNode* AvlTree::insertHelper(TreeNode* node, std::string name, std::string id
     // computing node's height and balance factor
     computeHeightandBalance(node);
 
-
-    // =======================================================. 
-    // TODO: insertion is correct until self balancing portion
-
     // balancing tree if necessary
-    // we'll have to recalculate the balance factors here again
-    // also seems like we're getting some out of bound error or something IDK
+    // TODO: rightLeft and leftRight are not working properly
     
     if (node->balanceFactor == 2) {
         if (node->left->balanceFactor == 1)
@@ -108,7 +109,6 @@ TreeNode* AvlTree::insertHelper(TreeNode* node, std::string name, std::string id
         else 
             return rotateRightLeft(node);
     }
-
 
     return node;
 }
