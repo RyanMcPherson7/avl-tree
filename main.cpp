@@ -19,8 +19,7 @@ int main() {
     
     // std::cout << tree.root->balanceFactor;
 
-    tree.printLevelCount();
-
+    tree.searchName("ryan");
 
     return 0;
 }

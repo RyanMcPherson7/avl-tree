@@ -150,7 +150,70 @@ void AvlTree::insert(std::string name, std::string id) {
 
 
 
+void AvlTree::searchIdHelper(TreeNode* root, std::string id) {
 
+    if (!root) 
+        std::cout << "unsuccessful" << std::endl;
+    else if (id == root->id)
+        std::cout << root->name << std::endl;
+    else if (id < root->id)
+        searchIdHelper(root->left, id);
+    else
+        searchIdHelper(root->right, id);
+}
+
+void AvlTree::searchId(std::string id) {
+    searchIdHelper(root, id);
+}
+
+
+
+
+// void AvlTree::searchName(std::string name) {
+
+//     std::queue<TreeNode*> q;
+//     if (root) q.push(root);
+//     std::string output = "";
+
+//     while (!q.empty()) {
+
+//         int size = q.size();
+        
+//         for (int i = 0; i < size; i++) {
+
+//             TreeNode* curr = q.front();
+//             if (curr->name == name)
+//                 output += curr->id + " ";
+
+//             if (curr->left) q.push(curr->left);
+//             if (curr->right) q.push(curr->right);
+//             q.pop();
+//         }   
+//     }
+
+//     if (output == "")
+//         std::cout << "unsuccessful" << std::endl;
+//     else 
+//         std::cout << output << std::endl;
+// }
+
+
+void AvlTree::searchNameHelper(TreeNode* node, std::string name) {
+
+    if (node) {
+        if (node->name == name)
+            std::cout << node->id << std::endl;
+        
+        searchNameHelper(node->left, name);
+        searchNameHelper(node->right, name);
+    }
+
+    // TODO: does NOT print "unsuccessful if cannot be found"
+}
+
+void AvlTree::searchName(std::string name) {
+    searchNameHelper(root, name);
+}
 
 
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <queue>
 
 struct TreeNode {
 
@@ -25,6 +26,8 @@ class AvlTree {
     TreeNode* rotateRight(TreeNode* node);
     TreeNode* rotateLeftRight(TreeNode* node);
     TreeNode* rotateRightLeft(TreeNode* node);
+    void searchIdHelper(TreeNode* root, std::string id);
+    void searchNameHelper(TreeNode* node, std::string name);
     void inorderHelper(TreeNode* root);
     void preorderHelper(TreeNode* root);
     void postorderHelper(TreeNode* root);
@@ -36,7 +39,7 @@ public:
 
     void insert(std::string name, std::string id);  // almost done
     void remove(std::string id);                    // not started
-    void searchId(std::string id);                  // not started
+    void searchId(std::string id);                  // done
     void searchName(std::string name);              // not started
     void printInorder();                            // done
     void printPreorder();                           // done
