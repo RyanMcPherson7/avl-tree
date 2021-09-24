@@ -11,9 +11,13 @@ void AvlTree::computeHeightandBalance(TreeNode* node) {
         node->height = 1 + node->left->height;
         node->balanceFactor = node->left->height;
     }
-    else {
+    else if (node->right) {
         node->height = 1 + node->right->height;
         node->balanceFactor = -1 * node->right->height;
+    }
+    else {
+        node->height = 1;
+        node->balanceFactor = 0;
     }
 }
 
@@ -228,5 +232,5 @@ void AvlTree::printLevelCount() {
     if (!root)
         std::cout << 0 << std::endl;
     else 
-        std::cout << root->height + 1 << std::endl;
+        std::cout << root->height << std::endl;
 }
