@@ -3,23 +3,23 @@
 
 int main() {
 
-    AvlTree tree = AvlTree();
+    // AvlTree tree = AvlTree();
+    AvlTree tree;
 
     // for (int i = 1; i < 5; i++) 
     //     tree.insert("name", i);
 
-    // tree.insert("name3", 3);
-    // tree.insert("name1", 2);
-
-    // std::cout << tree.root->height;
-
-    // we should prob make id's strings...
-    tree.insert("name1", "00000001");
-    tree.insert("name2", "00000002");
-    tree.insert("name3", "00000003");
+    tree.insert("3", "00000003");
+    tree.insert("2", "00000002");
+    tree.insert("1", "00000001");
+    tree.insert("8", "00000008");
+    tree.insert("5", "00000005");
+    tree.insert("4", "00000004");
+    tree.insert("7", "00000007");
     
-    std::cout << tree.root->height;
-    
+    // std::cout << tree.root->balanceFactor;
+
+    tree.printLevelCount();
 
 
     return 0;

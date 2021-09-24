@@ -12,7 +12,7 @@ struct TreeNode {
     TreeNode* right;
 
     TreeNode(std::string name, std::string id) : name(name), id(id), 
-    height(1), balanceFactor(0), left(nullptr), right(nullptr) {}
+    height(0), balanceFactor(0), left(nullptr), right(nullptr) {}
 };
 
 class AvlTree {
@@ -25,19 +25,22 @@ class AvlTree {
     TreeNode* rotateRight(TreeNode* node);
     TreeNode* rotateLeftRight(TreeNode* node);
     TreeNode* rotateRightLeft(TreeNode* node);
+    void inorderHelper(TreeNode* root);
+    void preorderHelper(TreeNode* root);
+    void postorderHelper(TreeNode* root);
 public: 
 
     TreeNode* root;
 
     AvlTree() : root(nullptr) {}
 
-    void insert(std::string name, std::string id);
-    void remove(std::string id);
-    void searchId(std::string id);
-    void searchName(std::string name);
-    void printInorder();
-    void printPreorder();
-    void printPostorder();
-    void printLevelCount();
-    void removeInorder(int n);
+    void insert(std::string name, std::string id);  // almost done
+    void remove(std::string id);                    // not started
+    void searchId(std::string id);                  // not started
+    void searchName(std::string name);              // not started
+    void printInorder();                            // done
+    void printPreorder();                           // done
+    void printPostorder();                          // done
+    void printLevelCount();                         // done
+    void removeInorder(int n);                      // not started
 };

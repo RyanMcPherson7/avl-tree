@@ -137,3 +137,72 @@ void AvlTree::insert(std::string name, std::string id) {
     insertHelper(root, name, id);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void AvlTree::inorderHelper(TreeNode* root) {
+
+    if (root) {
+        inorderHelper(root->left);
+        std::cout << root->name << ", ";
+        inorderHelper(root->right);
+    }
+}
+
+void AvlTree::printInorder() {
+    inorderHelper(root);
+    std::cout << std::endl;
+}
+
+
+void AvlTree::preorderHelper(TreeNode* root) {
+
+    if (root) {
+        std::cout << root->name << ", ";
+        preorderHelper(root->left);
+        preorderHelper(root->right);
+    }
+}
+
+void AvlTree::printPreorder() {
+    preorderHelper(root);
+    std::cout << std::endl;
+}
+
+
+void AvlTree::postorderHelper(TreeNode* root) {
+
+    if (root) {
+        postorderHelper(root->left);
+        postorderHelper(root->right);
+        std::cout << root->name << ", ";
+    }
+}
+
+void AvlTree::printPostorder() {
+    postorderHelper(root);
+    std::cout << std::endl;
+}
+
+
+void AvlTree::printLevelCount() {
+
+    if (!root)
+        std::cout << 0 << std::endl;
+    else 
+        std::cout << root->height + 1 << std::endl;
+}
