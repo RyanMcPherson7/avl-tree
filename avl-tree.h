@@ -5,13 +5,13 @@
 struct TreeNode {
 
     std::string name;
-    int id;
+    std::string id;
     int height;
     int balanceFactor;
     TreeNode* left;
     TreeNode* right;
 
-    TreeNode(std::string name, int id) : name(name), id(id), 
+    TreeNode(std::string name, std::string id) : name(name), id(id), 
     height(1), balanceFactor(0), left(nullptr), right(nullptr) {}
 };
 
@@ -19,7 +19,7 @@ class AvlTree {
     // TreeNode* root;
 
     // helper functions
-    TreeNode* insertHelper(TreeNode* root, std::string name, int id);
+    TreeNode* insertHelper(TreeNode* root, std::string name, std::string id);
     void computeHeightandBalance(TreeNode* node);
     TreeNode* rotateLeft(TreeNode* node);
     TreeNode* rotateRight(TreeNode* node);
@@ -31,10 +31,10 @@ public:
 
     AvlTree() : root(nullptr) {}
 
-    void insert(std::string name, int id);
-    void remove(int id);
-    void search(int id);
-    void search(std::string name);
+    void insert(std::string name, std::string id);
+    void remove(std::string id);
+    void searchId(std::string id);
+    void searchName(std::string name);
     void printInorder();
     void printPreorder();
     void printPostorder();

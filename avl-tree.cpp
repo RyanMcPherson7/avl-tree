@@ -58,7 +58,7 @@ TreeNode* AvlTree::rotateRightLeft(TreeNode* node) {
 
 
 
-TreeNode* AvlTree::insertHelper(TreeNode* root, std::string name, int id) {
+TreeNode* AvlTree::insertHelper(TreeNode* root, std::string name, std::string id) {
 
     if (!root) {
         std::cout << "successful" << std::endl;
@@ -78,6 +78,10 @@ TreeNode* AvlTree::insertHelper(TreeNode* root, std::string name, int id) {
 
     // computing node's height and balance factor
     computeHeightandBalance(root);
+
+
+    // =====================
+    // TODO: insertion is correct until self balancing portion
 
     // balancing tree if necessary
     // do epic rotations here!
@@ -115,10 +119,10 @@ TreeNode* AvlTree::insertHelper(TreeNode* root, std::string name, int id) {
 }
 
 
-void AvlTree::insert(std::string name, int id) {
+void AvlTree::insert(std::string name, std::string id) {
 
     // if id is not 8 digits
-    if (id % 10000000 == id || id % 100000000 != id) {
+    if (id.length() != 8) {
         std::cout << "unsuccessful" << std::endl;
         return;
     }

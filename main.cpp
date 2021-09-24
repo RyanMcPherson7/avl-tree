@@ -14,11 +14,11 @@ int main() {
     // std::cout << tree.root->height;
 
     // we should prob make id's strings...
-    tree.insert("name1", 1);
+    tree.insert("name1", "00000001");
+    tree.insert("name2", "00000002");
+    tree.insert("name3", "00000003");
     
-    tree.insert("name3", 3);
-    tree.insert("name2", 2);
-    
+    std::cout << tree.root->height;
     
 
 
