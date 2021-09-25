@@ -22,24 +22,24 @@ class AvlTree {
     TreeNode* root;
 
     // helper functions
-    TreeNode* insertHelper(TreeNode* root, string name, string id);
+    TreeNode* insertHelper(TreeNode* root, string& name, string& id);
     void computeHeightandBalance(TreeNode* node);
     TreeNode* rotateLeft(TreeNode* node);
     TreeNode* rotateRight(TreeNode* node);
     TreeNode* rotateLeftRight(TreeNode* node);
     TreeNode* rotateRightLeft(TreeNode* node);
-    void searchIdHelper(TreeNode* node, string id);
-    void searchNameHelper(TreeNode* node, string name, string& output);
+    void searchIdHelper(TreeNode* node, string& id);
+    void searchNameHelper(TreeNode* node, string& name, string& output);
     void inorderHelper(TreeNode* node);
     void preorderHelper(TreeNode* node);
     void postorderHelper(TreeNode* node);
 public: 
 
     AvlTree() : root(nullptr) {}
-    void insert(string name, string id);  // done
-    void remove(string id);               // not started
-    void searchId(string id);             // done
-    void searchName(string name);         // done
+    void insert(string& name, string& id);  // done
+    void remove(string& id);               // not started
+    void searchId(string& id);             // done
+    void searchName(string& name);         // done
     void printInorder();                  // done
     void printPreorder();                 // done
     void printPostorder();                // done

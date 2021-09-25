@@ -23,8 +23,7 @@ int main() {
             string studentName = command.substr(0, quoteIndex);
             string studentId = command.substr(quoteIndex + 2);
 
-            cout << studentId << endl;
-
+            tree.insert(studentName, studentId);
 
         }
         else 
@@ -47,7 +46,7 @@ int main() {
     // tree.insert("18", "00000018");
     // tree.insert("19", "00000019");
 
-    // tree.printLevelCount();
+    tree.printLevelCount();
 
     return 0;
 }

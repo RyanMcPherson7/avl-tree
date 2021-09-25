@@ -68,7 +68,7 @@ TreeNode* AvlTree::rotateRightLeft(TreeNode* node) {
 
 
 
-TreeNode* AvlTree::insertHelper(TreeNode* node, string name, string id) {
+TreeNode* AvlTree::insertHelper(TreeNode* node, string& name, string& id) {
 
     if (!node) {
         cout << "successful" << endl;
@@ -110,7 +110,7 @@ TreeNode* AvlTree::insertHelper(TreeNode* node, string name, string id) {
 }
 
 
-void AvlTree::insert(string name, string id) {
+void AvlTree::insert(string& name, string& id) {
 
     // if id is not 8 digits
     if (id.length() != 8) {
@@ -141,7 +141,7 @@ void AvlTree::insert(string name, string id) {
 
 
 
-void AvlTree::searchIdHelper(TreeNode* node, string id) {
+void AvlTree::searchIdHelper(TreeNode* node, string& id) {
 
     if (!node) 
         cout << "unsuccessful" << endl;
@@ -153,12 +153,12 @@ void AvlTree::searchIdHelper(TreeNode* node, string id) {
         searchIdHelper(node->right, id);
 }
 
-void AvlTree::searchId(string id) {
+void AvlTree::searchId(string& id) {
     searchIdHelper(root, id);
 }
 
 
-void AvlTree::searchNameHelper(TreeNode* node, string name, string& output) {
+void AvlTree::searchNameHelper(TreeNode* node, string& name, string& output) {
 
     if (node) {
         if (node->name == name)
@@ -169,7 +169,7 @@ void AvlTree::searchNameHelper(TreeNode* node, string name, string& output) {
     }
 }
 
-void AvlTree::searchName(string name) {
+void AvlTree::searchName(string& name) {
 
     string output = "";
     searchNameHelper(root, name, output);
