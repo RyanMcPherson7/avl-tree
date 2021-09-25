@@ -36,7 +36,7 @@ public:
     TreeNode* root;
 
     AvlTree() : root(nullptr) {}
-    void insert(std::string name, std::string id);  // almost 
+    void insert(std::string name, std::string id);  // done
     void remove(std::string id);                    // not started
     void searchId(std::string id);                  // done
     void searchName(std::string name);              // done
