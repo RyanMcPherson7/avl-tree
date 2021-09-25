@@ -182,48 +182,58 @@ void AvlTree::searchName(string& name) {
 
 
 
-void AvlTree::inorderHelper(TreeNode* node) {
+void AvlTree::inorderHelper(TreeNode* node, string& output) {
 
     if (node) {
-        inorderHelper(node->left);
-        cout << node->name << ", ";
-        inorderHelper(node->right);
+        inorderHelper(node->left, output);
+        output +=  node->name + ", ";
+        inorderHelper(node->right, output);
     }
 }
 
 void AvlTree::printInorder() {
-    inorderHelper(root);
-    cout << endl;
+
+    string output = "";
+    inorderHelper(root, output);
+    
+    if (output.length() != 0)
+        cout << output.substr(0, output.length() - 2) << endl;
 }
 
 
-void AvlTree::preorderHelper(TreeNode* node) {
+void AvlTree::preorderHelper(TreeNode* node, string& output) {
 
     if (node) {
-        cout << node->name << ", ";
-        preorderHelper(node->left);
-        preorderHelper(node->right);
+        output += node->name + ", ";
+        preorderHelper(node->left, output);
+        preorderHelper(node->right, output);
     }
 }
 
 void AvlTree::printPreorder() {
-    preorderHelper(root);
-    cout << endl;
+    string output = "";
+    preorderHelper(root, output);
+
+    if (output.length() != 0)
+        cout << output.substr(0, output.length() - 2) << endl;
 }
 
 
-void AvlTree::postorderHelper(TreeNode* node) {
+void AvlTree::postorderHelper(TreeNode* node, string& output) {
 
     if (node) {
-        postorderHelper(node->left);
-        postorderHelper(node->right);
-        cout << node->name << ", ";
+        postorderHelper(node->left, output);
+        postorderHelper(node->right, output);
+        output += node->name + ", ";
     }
 }
 
 void AvlTree::printPostorder() {
-    postorderHelper(root);
-    cout << endl;
+    string output = "";
+    postorderHelper(root, output);
+
+    if (output.length() != 0)
+        cout << output.substr(0, output.length() - 2) << endl;
 }
 
 
