@@ -13,8 +13,24 @@ int main() {
         std::string command;
         std::getline(std::cin, command);
 
-        // check to see which command was passed!
+        // checking input command and running operation
+        if (command.find("insert") != -1) {
+
+            // extracting data from command
+            int spaceIndex = command.find(" ");
+            command = command.substr(spaceIndex + 2, command.length() - 1);
+            int quoteIndex = command.find("\"");
+            std::string studentName = command.substr(0, quoteIndex);
+            std::string studentId = command.substr(quoteIndex + 2);
+
+            std::cout << studentId << std::endl;
+
+
+        }
+        else 
+            std::cout << "invalid command" << std::endl;
     }
+
 
 
 
