@@ -8,13 +8,14 @@ int main() {
     string numCommands;
     getline(cin, numCommands);
 
+    // checking each command and executing functions
     for (int i = 0; i < stoi(numCommands); i++) {
 
         string command;
         getline(cin, command);
 
-        // checking input command and running operation
-        if (command.find("insert") != -1) {
+        // insert command
+        if (command.find("insert") == 0) {
 
             // extracting data from command
             int spaceIndex = command.find(" ");
@@ -26,6 +27,50 @@ int main() {
             tree.insert(studentName, studentId);
 
         }
+        else if (command.find("remove") == 0) {
+
+            // removeInorder command
+            if (command.find("removeInorder") == 0) {
+                int spaceIndex = command.find(" ");
+                string index = command.substr(spaceIndex + 1, command.length() - 1);
+
+                // tree.removeInorder(stoi(index));
+            }
+            // remove command
+            else {
+                int spaceIndex = command.find(" ");
+                string studentId = command.substr(spaceIndex + 1, command.length() - 1);
+
+                // tree.remove(studentId);
+            }
+        }
+        else if (command.find("search") == 0) {
+
+            // search name command
+            if (command.find("\"") != -1) {
+                int spaceIndex = command.find(" ");
+                command = command.substr(spaceIndex + 2, command.length() - 1);
+                int quoteIndex = command.find("\"");
+                string studentName = command.substr(0, quoteIndex);
+
+                tree.searchName(studentName);                
+            }
+            // search id command
+            else {
+                int spaceIndex = command.find(" ");
+                string studentId = command.substr(spaceIndex + 1, command.length() - 1);
+
+                tree.searchId(studentId);
+            }
+        }
+        else if (command.find("printInorder") == 0) 
+            tree.printInorder();
+        else if (command.find("printPreorder") == 0)
+            tree.printPreorder();
+        else if (command.find("printPostorder") == 0)
+            tree.printPostorder();
+        else if (command.find("printLevelCount") == 0)
+            tree.printLevelCount();
         else 
             cout << "invalid command" << endl;
     }
@@ -46,7 +91,6 @@ int main() {
     // tree.insert("18", "00000018");
     // tree.insert("19", "00000019");
 
-    tree.printLevelCount();
 
     return 0;
 }
