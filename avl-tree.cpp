@@ -4,7 +4,7 @@
 void AvlTree::computeHeightandBalance(TreeNode* node) {
 
     if (node->right && node->left) {
-        node->height = 1 + std::max(node->left->height, node->right->height);
+        node->height = 1 + max(node->left->height, node->right->height);
         node->balanceFactor = node->left->height - node->right->height;
     }
     else if (node->left) {
@@ -68,20 +68,20 @@ TreeNode* AvlTree::rotateRightLeft(TreeNode* node) {
 
 
 
-TreeNode* AvlTree::insertHelper(TreeNode* node, std::string name, std::string id) {
+TreeNode* AvlTree::insertHelper(TreeNode* node, string name, string id) {
 
     if (!node) {
-        std::cout << "successful" << std::endl;
+        cout << "successful" << endl;
         return new TreeNode(name, id);
     }
 
     // inserting node
-    if (id < node->id)
+    if (stoi(id) < stoi(node->id))
         node->left = insertHelper(node->left, name, id);
-    else if (id > node->id)  
+    else if (stoi(id) > stoi(node->id))  
         node->right = insertHelper(node->right, name, id);
     else {
-        std::cout << "unsuccessful" << std::endl;
+        cout << "unsuccessful" << endl;
         return node;
     }
         
@@ -110,18 +110,18 @@ TreeNode* AvlTree::insertHelper(TreeNode* node, std::string name, std::string id
 }
 
 
-void AvlTree::insert(std::string name, std::string id) {
+void AvlTree::insert(string name, string id) {
 
     // if id is not 8 digits
     if (id.length() != 8) {
-        std::cout << "unsuccessful" << std::endl;
+        cout << "unsuccessful" << endl;
         return;
     }
 
     // if tree is empty
     if (!root) {
         root = new TreeNode(name, id);
-        std::cout << "successful" << std::endl;
+        cout << "successful" << endl;
         return;
     }
 
@@ -141,24 +141,24 @@ void AvlTree::insert(std::string name, std::string id) {
 
 
 
-void AvlTree::searchIdHelper(TreeNode* node, std::string id) {
+void AvlTree::searchIdHelper(TreeNode* node, string id) {
 
     if (!node) 
-        std::cout << "unsuccessful" << std::endl;
-    else if (id == node->id)
-        std::cout << node->name << std::endl;
-    else if (id < node->id)
+        cout << "unsuccessful" << endl;
+    else if (stoi(id) == stoi(node->id))
+        cout << node->name << endl;
+    else if (stoi(id) < stoi(node->id))
         searchIdHelper(node->left, id);
     else
         searchIdHelper(node->right, id);
 }
 
-void AvlTree::searchId(std::string id) {
+void AvlTree::searchId(string id) {
     searchIdHelper(root, id);
 }
 
 
-void AvlTree::searchNameHelper(TreeNode* node, std::string name, std::string& output) {
+void AvlTree::searchNameHelper(TreeNode* node, string name, string& output) {
 
     if (node) {
         if (node->name == name)
@@ -169,15 +169,15 @@ void AvlTree::searchNameHelper(TreeNode* node, std::string name, std::string& ou
     }
 }
 
-void AvlTree::searchName(std::string name) {
+void AvlTree::searchName(string name) {
 
-    std::string output = "";
+    string output = "";
     searchNameHelper(root, name, output);
 
     if (output == "")
-        std::cout << "unsuccessful" << std::endl;
+        cout << "unsuccessful" << endl;
     else 
-        std::cout << output;
+        cout << output;
 }
 
 
@@ -186,21 +186,21 @@ void AvlTree::inorderHelper(TreeNode* node) {
 
     if (node) {
         inorderHelper(node->left);
-        std::cout << node->name << ", ";
+        cout << node->name << ", ";
         inorderHelper(node->right);
     }
 }
 
 void AvlTree::printInorder() {
     inorderHelper(root);
-    std::cout << std::endl;
+    cout << endl;
 }
 
 
 void AvlTree::preorderHelper(TreeNode* node) {
 
     if (node) {
-        std::cout << node->name << ", ";
+        cout << node->name << ", ";
         preorderHelper(node->left);
         preorderHelper(node->right);
     }
@@ -208,7 +208,7 @@ void AvlTree::preorderHelper(TreeNode* node) {
 
 void AvlTree::printPreorder() {
     preorderHelper(root);
-    std::cout << std::endl;
+    cout << endl;
 }
 
 
@@ -217,20 +217,20 @@ void AvlTree::postorderHelper(TreeNode* node) {
     if (node) {
         postorderHelper(node->left);
         postorderHelper(node->right);
-        std::cout << node->name << ", ";
+        cout << node->name << ", ";
     }
 }
 
 void AvlTree::printPostorder() {
     postorderHelper(root);
-    std::cout << std::endl;
+    cout << endl;
 }
 
 
 void AvlTree::printLevelCount() {
 
     if (!root)
-        std::cout << 0 << std::endl;
+        cout << 0 << endl;
     else 
-        std::cout << root->height << std::endl;
+        cout << root->height << endl;
 }
