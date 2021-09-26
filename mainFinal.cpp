@@ -211,43 +211,38 @@ TreeNode* AvlTree::removeHelper(TreeNode* node, string& id) {
                 successor = successor->left;
             } 
                 
-
             // updating node
-            TreeNode* successorChild = successor->right;
             node->name = successor->name;
             node->id = successor->id;
 
-            successorParent->left = nullptr;
+            // placing successor's child
+            if (successor = node->right) 
+                node->right = successor->right;
+            else
+                successorParent->left = successor->right;
             
-
-            // placing successor's children
-            TreeNode* leftmostChild = node->right;
-            while (leftmostChild->left)
-                leftmostChild = leftmostChild->left;
-
-            leftmostChild->left = successorChild;
-
             delete successor;
-            computeHeightandBalance(node);
-            return node;
+        }
+        // if node to remove does not have 2 children
+        else {
+            TreeNode* replacement = nullptr;
+
+            if (node->left) 
+                replacement = node->left;
+            else if (node->right)
+                replacement = node->right;
+            
+            // if we removed the root node
+            if (node == root) 
+                root = replacement;
+
+            delete node;
+            
+            computeHeightandBalance(replacement);
+            return replacement;
         }
 
-        // if the node to remove does not have 2 children
-        TreeNode* replacement = nullptr;
-
-        if (node->left) 
-            replacement = node->left;
-        else if (node->right)
-            replacement = node->right;
         
-        // if we removed the root node
-        if (node == root) 
-            root = replacement;
-
-        delete node;
-        
-        computeHeightandBalance(replacement);
-        return replacement;
     }
     // matching node not found
     else {
@@ -394,9 +389,6 @@ void AvlTree::removeInorder(int n) {
     else
         remove(output.at(n));
 }
-
-
-
 
 
 int main() {

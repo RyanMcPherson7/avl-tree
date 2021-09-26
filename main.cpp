@@ -76,16 +76,29 @@ int main() {
     }
 
 
-    for (int i = 100; i < 104; i++) {
+    // for (int i = 100; i < 104; i++) {
 
-        string name = to_string(i);
-        string id = "00000" + to_string(i);
-        tree.insert(name, id);
-    }
+    //     string name = to_string(i);
+    //     string id = "00000" + to_string(i);
+    //     tree.insert(name, id);
+    // }
+
+    string theName = "Brandon";
+    string theKey = "45674567";
+    tree.insert(theName, theKey);
+    theName = "Brian";
+    theKey = "35455565";
+    tree.insert(theName, theKey);
+    theName = "Briana";
+    theKey = "87878787";
+    tree.insert(theName, theKey);
+    theName = "Bella";
+    theKey = "95462138";
+    tree.insert(theName, theKey);
 
     tree.printInorder();
-    string key = "00000100";
-    tree.remove(key);
+    theKey = "45674567";
+    tree.remove(theKey);
     tree.removeInorder(2);
     tree.printInorder();
 
