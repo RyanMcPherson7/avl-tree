@@ -133,8 +133,6 @@ void AvlTree::insert(string& name, string& id) {
 
 
 
-
-
 TreeNode* AvlTree::removeHelper(TreeNode* node, string& id) {
 
     if (!node) {
@@ -209,13 +207,6 @@ TreeNode* AvlTree::removeHelper(TreeNode* node, string& id) {
 void AvlTree::remove(string& id) {
     removeHelper(root, id);
 }
-
-
-
-
-
-
-
 
 
 
@@ -322,4 +313,27 @@ void AvlTree::printLevelCount() {
         cout << 0 << endl;
     else 
         cout << root->height << endl;
+}
+
+
+
+
+void AvlTree::removeInorderHelper(TreeNode* node, vector<string>& output) {
+    
+    if (node) {
+        removeInorderHelper(node->left, output);
+        output.push_back(node->id);
+        removeInorderHelper(node->right, output);
+    }
+}
+
+void AvlTree::removeInorder(int n) {
+
+    vector<string> output;
+    removeInorderHelper(root, output);
+
+    if (n > output.size() - 1)
+        cout << "unsuccessful" << endl;
+    else
+        remove(output.at(n));
 }

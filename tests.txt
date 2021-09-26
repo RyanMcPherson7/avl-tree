@@ -1,0 +1,13 @@
+some additional tests
+
+for (int i = 100; i < 105; i++) {
+
+        string name = to_string(i);
+        string id = "00000" + to_string(i);
+        tree.insert(name, id);
+    }
+
+    string key = "00000120";
+    tree.printInorder();
+    tree.removeInorder(2);
+    tree.printInorder();

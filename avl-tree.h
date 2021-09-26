@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include <queue>
+#include <vector>
 
 using namespace std;
 
@@ -34,16 +34,17 @@ class AvlTree {
     void inorderHelper(TreeNode* node, string& output);
     void preorderHelper(TreeNode* node, string& output);
     void postorderHelper(TreeNode* node, string& output);
+    void removeInorderHelper(TreeNode* node, vector<string>& output);
 public: 
 
     AvlTree() : root(nullptr) {}
     void insert(string& name, string& id); // done
-    void remove(string& id);               // not started
+    void remove(string& id);               // done
     void searchId(string& id);             // done
     void searchName(string& name);         // done
     void printInorder();                   // done
     void printPreorder();                  // done
     void printPostorder();                 // done
     void printLevelCount();                // done
-    void removeInorder(int n);             // not started
+    void removeInorder(int n);             // done
 };
