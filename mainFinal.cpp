@@ -403,6 +403,25 @@ void AvlTree::removeInorder(int n) {
 
 
 
+string parseNoQuotes(string& command) {
+
+    int spaceIndex = command.find(" ");
+    string data = command.substr(spaceIndex + 1, command.length() - 1);
+    return data;
+}
+
+
+string parseQuotes(string& command) {
+
+    int spaceIndex = command.find(" ");
+    command = command.substr(spaceIndex + 2, command.length() - 1);
+    int quoteIndex = command.find("\"");
+    string data = command.substr(0, quoteIndex);
+    return data;
+}
+
+
+
 int main() {
 
     AvlTree tree;
@@ -416,52 +435,30 @@ int main() {
         string command;
         getline(cin, command);
 
-        // insert command
         if (command.find("insert") == 0) {
-
-            // extracting data from command
-            int spaceIndex = command.find(" ");
-            command = command.substr(spaceIndex + 2, command.length() - 1);
-            int quoteIndex = command.find("\"");
-            string studentName = command.substr(0, quoteIndex);
-            string studentId = command.substr(quoteIndex + 2);
-
+            string studentName = parseQuotes(command);
+            string studentId = command.substr(command.find("\"") + 2);
             tree.insert(studentName, studentId);
-
         }
         else if (command.find("remove") == 0) {
 
-            // removeInorder command
             if (command.find("removeInorder") == 0) {
-                int spaceIndex = command.find(" ");
-                string index = command.substr(spaceIndex + 1, command.length() - 1);
-
+                string index = parseNoQuotes(command);
                 tree.removeInorder(stoi(index));
             }
-            // remove command
             else {
-                int spaceIndex = command.find(" ");
-                string studentId = command.substr(spaceIndex + 1, command.length() - 1);
-
+                string studentId = parseNoQuotes(command);
                 tree.remove(studentId);
             }
         }
         else if (command.find("search") == 0) {
 
-            // search name command
             if (command.find("\"") != -1) {
-                int spaceIndex = command.find(" ");
-                command = command.substr(spaceIndex + 2, command.length() - 1);
-                int quoteIndex = command.find("\"");
-                string studentName = command.substr(0, quoteIndex);
-
+                string studentName = parseQuotes(command);
                 tree.searchName(studentName);                
             }
-            // search id command
             else {
-                int spaceIndex = command.find(" ");
-                string studentId = command.substr(spaceIndex + 1, command.length() - 1);
-
+                string studentId = parseNoQuotes(command);
                 tree.searchId(studentId);
             }
         }
