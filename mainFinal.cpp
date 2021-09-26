@@ -22,7 +22,7 @@ class AvlTree {
 
     // helper functions
     TreeNode* insertHelper(TreeNode* root, string& name, string& id);
-    void computeHeightandBalance(TreeNode* node);
+    void HeightBalance(TreeNode* node);
     TreeNode* rotateLeft(TreeNode* node);
     TreeNode* rotateRight(TreeNode* node);
     TreeNode* rotateLeftRight(TreeNode* node);
@@ -51,7 +51,7 @@ public:
 
 
 // recalibrates node's height and balance factor
-void AvlTree::computeHeightandBalance(TreeNode* node) {
+void AvlTree::HeightBalance(TreeNode* node) {
 
     if (!node) return;
 
@@ -74,6 +74,7 @@ void AvlTree::computeHeightandBalance(TreeNode* node) {
 }
 
 
+
 TreeNode* AvlTree::rotateLeft(TreeNode* node) {
 
     TreeNode* grandchild = node->right->left;
@@ -84,11 +85,12 @@ TreeNode* AvlTree::rotateLeft(TreeNode* node) {
     if (node == root) root = newParent;
 
     // computing node's height and balance factor
-    computeHeightandBalance(node);
-    computeHeightandBalance(newParent);
+    HeightBalance(node);
+    HeightBalance(newParent);
 
     return newParent;
 }
+
 
 TreeNode* AvlTree::rotateRight(TreeNode* node) {
 
@@ -100,17 +102,19 @@ TreeNode* AvlTree::rotateRight(TreeNode* node) {
     if (node == root) root = newParent;
 
     // computing node's height and balance factor
-    computeHeightandBalance(node);
-    computeHeightandBalance(newParent);
+    HeightBalance(node);
+    HeightBalance(newParent);
 
     return newParent;
 }
+
 
 TreeNode* AvlTree::rotateLeftRight(TreeNode* node) {
 
     node->left = rotateLeft(node->left);
     return rotateRight(node);
 }
+
 
 TreeNode* AvlTree::rotateRightLeft(TreeNode* node) {
 
@@ -139,7 +143,7 @@ TreeNode* AvlTree::insertHelper(TreeNode* node, string& name, string& id) {
         
 
     // computing node's height and balance factor
-    computeHeightandBalance(node);
+    HeightBalance(node);
 
 
     // balancing tree if necessary
@@ -179,7 +183,6 @@ void AvlTree::insert(string& name, string& id) {
 
     insertHelper(root, name, id);
 }
-
 
 
 
@@ -238,7 +241,7 @@ TreeNode* AvlTree::removeHelper(TreeNode* node, string& id) {
 
             delete node;
             
-            computeHeightandBalance(replacement);
+            HeightBalance(replacement);
             return replacement;
         }
 
@@ -251,7 +254,7 @@ TreeNode* AvlTree::removeHelper(TreeNode* node, string& id) {
     }
 
 
-    computeHeightandBalance(node);
+    HeightBalance(node);
     return node;
 }
 
@@ -259,7 +262,6 @@ TreeNode* AvlTree::removeHelper(TreeNode* node, string& id) {
 void AvlTree::remove(string& id) {
     removeHelper(root, id);
 }
-
 
 
 
@@ -275,9 +277,11 @@ void AvlTree::searchIdHelper(TreeNode* node, string& id) {
         searchIdHelper(node->right, id);
 }
 
+
 void AvlTree::searchId(string& id) {
     searchIdHelper(root, id);
 }
+
 
 
 void AvlTree::searchNameHelper(TreeNode* node, string& name, string& output) {
@@ -291,12 +295,13 @@ void AvlTree::searchNameHelper(TreeNode* node, string& name, string& output) {
     }
 }
 
+
 void AvlTree::searchName(string& name) {
 
-    string output = "";
+    string output;
     searchNameHelper(root, name, output);
 
-    if (output == "")
+    if (output.length() == 0)
         cout << "unsuccessful" << endl;
     else 
         cout << output;
@@ -313,14 +318,16 @@ void AvlTree::inorderHelper(TreeNode* node, string& output) {
     }
 }
 
+
 void AvlTree::printInorder() {
 
-    string output = "";
+    string output;
     inorderHelper(root, output);
     
     if (output.length() != 0)
         cout << output.substr(0, output.length() - 2) << endl;
 }
+
 
 
 void AvlTree::preorderHelper(TreeNode* node, string& output) {
@@ -332,13 +339,15 @@ void AvlTree::preorderHelper(TreeNode* node, string& output) {
     }
 }
 
+
 void AvlTree::printPreorder() {
-    string output = "";
+    string output;
     preorderHelper(root, output);
 
     if (output.length() != 0)
         cout << output.substr(0, output.length() - 2) << endl;
 }
+
 
 
 void AvlTree::postorderHelper(TreeNode* node, string& output) {
@@ -350,13 +359,15 @@ void AvlTree::postorderHelper(TreeNode* node, string& output) {
     }
 }
 
+
 void AvlTree::printPostorder() {
-    string output = "";
+    string output;
     postorderHelper(root, output);
 
     if (output.length() != 0)
         cout << output.substr(0, output.length() - 2) << endl;
 }
+
 
 
 void AvlTree::printLevelCount() {
@@ -369,7 +380,6 @@ void AvlTree::printLevelCount() {
 
 
 
-
 void AvlTree::removeInorderHelper(TreeNode* node, vector<string>& output) {
     
     if (node) {
@@ -378,6 +388,7 @@ void AvlTree::removeInorderHelper(TreeNode* node, vector<string>& output) {
         removeInorderHelper(node->right, output);
     }
 }
+
 
 void AvlTree::removeInorder(int n) {
 
@@ -389,6 +400,7 @@ void AvlTree::removeInorder(int n) {
     else
         remove(output.at(n));
 }
+
 
 
 int main() {
@@ -464,7 +476,6 @@ int main() {
         else 
             cout << "invalid command" << endl;
     }
-
 
     return 0;
 }
