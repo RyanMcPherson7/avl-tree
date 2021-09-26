@@ -3,6 +3,8 @@
 // recalibrates node's height and balance factor
 void AvlTree::computeHeightandBalance(TreeNode* node) {
 
+    if (!node) return;
+
     if (node->right && node->left) {
         node->height = 1 + max(node->left->height, node->right->height);
         node->balanceFactor = node->left->height - node->right->height;
@@ -130,6 +132,83 @@ void AvlTree::insert(string& name, string& id) {
 
 
 
+
+
+
+TreeNode* AvlTree::removeHelper(TreeNode* node, string& id) {
+
+    if (!node) {
+        cout << "unsuccessful" << endl;
+        return nullptr;
+    }
+        
+    else if (stoi(id) < stoi(node->id))
+        node->left = removeHelper(node->left, id);
+
+    else if (stoi(id) > stoi(node->id))
+        node->right = removeHelper(node->right, id);
+
+    // matching node found
+    else if (stoi(id) == stoi(node->id)) {
+        
+        cout << "successful" << endl;
+
+        if (node->left && node->right) {
+
+            // finding inorder successor
+            TreeNode* successor = node->right;
+            while (successor->left) 
+                successor = successor->left;
+
+            // deleting and updating node
+            TreeNode* successorChild = successor->right;
+            node->name = successor->name;
+            node->id = successor->id;
+            delete successor;
+
+            // placing successors children
+            TreeNode* leftmostChild = node;
+            while (node->left)
+                leftmostChild = leftmostChild->left;
+
+            leftmostChild->left = successorChild;
+
+            computeHeightandBalance(node);
+            return node;
+        }
+
+        // if the node to remove does not have 2 children
+        TreeNode* replacement = nullptr;
+
+        if (node->left) 
+            replacement = node->left;
+        else if (node->right)
+            replacement = node->right;
+        
+        // if we removed the root node
+        if (node == root) 
+            root = replacement;
+
+        delete node;
+        
+        computeHeightandBalance(replacement);
+        return replacement;
+    }
+    // matching node not found
+    else {
+        cout << "unsuccessful" << endl;
+        return nullptr;
+    }
+
+
+    computeHeightandBalance(node);
+    return node;
+}
+
+
+void AvlTree::remove(string& id) {
+    removeHelper(root, id);
+}
 
 
 

@@ -41,7 +41,7 @@ int main() {
                 int spaceIndex = command.find(" ");
                 string studentId = command.substr(spaceIndex + 1, command.length() - 1);
 
-                // tree.remove(studentId);
+                tree.remove(studentId);
             }
         }
         else if (command.find("search") == 0) {
@@ -74,6 +74,21 @@ int main() {
         else 
             cout << "invalid command" << endl;
     }
+
+
+    
+    for (int i = 100; i < 140; i++) {
+
+        string name = to_string(i);
+        string id = "00000" + to_string(i);
+        tree.insert(name, id);
+    }
+
+    string key = "00000120";
+    tree.remove(key);
+    tree.printInorder();
+
+
 
     return 0;
 }

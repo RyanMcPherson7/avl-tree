@@ -28,6 +28,7 @@ class AvlTree {
     TreeNode* rotateRight(TreeNode* node);
     TreeNode* rotateLeftRight(TreeNode* node);
     TreeNode* rotateRightLeft(TreeNode* node);
+    TreeNode* removeHelper(TreeNode* node, string& id);
     void searchIdHelper(TreeNode* node, string& id);
     void searchNameHelper(TreeNode* node, string& name, string& output);
     void inorderHelper(TreeNode* node, string& output);
@@ -40,9 +41,9 @@ public:
     void remove(string& id);               // not started
     void searchId(string& id);             // done
     void searchName(string& name);         // done
-    void printInorder();                   // need to fix (last comma)
-    void printPreorder();                  // need to fix (last comma)
-    void printPostorder();                 // need to fix (last comma)
+    void printInorder();                   // done
+    void printPreorder();                  // done
+    void printPostorder();                 // done
     void printLevelCount();                // done
     void removeInorder(int n);             // not started
 };
