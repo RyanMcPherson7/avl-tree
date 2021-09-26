@@ -75,5 +75,19 @@ int main() {
             cout << "invalid command" << endl;
     }
 
+
+    for (int i = 100; i < 104; i++) {
+
+        string name = to_string(i);
+        string id = "00000" + to_string(i);
+        tree.insert(name, id);
+    }
+
+    tree.printInorder();
+    string key = "00000100";
+    tree.remove(key);
+    tree.removeInorder(2);
+    tree.printInorder();
+
     return 0;
 }

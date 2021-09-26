@@ -49,6 +49,7 @@ public:
 };
 
 
+
 // recalibrates node's height and balance factor
 void AvlTree::computeHeightandBalance(TreeNode* node) {
 
@@ -204,22 +205,29 @@ TreeNode* AvlTree::removeHelper(TreeNode* node, string& id) {
 
             // finding inorder successor
             TreeNode* successor = node->right;
-            while (successor->left) 
+            TreeNode* successorParent = node;
+            while (successor->left) {
+                successorParent = successor;
                 successor = successor->left;
+            } 
+                
 
-            // deleting and updating node
+            // updating node
             TreeNode* successorChild = successor->right;
             node->name = successor->name;
             node->id = successor->id;
-            delete successor;
 
-            // placing successors children
-            TreeNode* leftmostChild = node;
-            while (node->left)
+            successorParent->left = nullptr;
+            
+
+            // placing successor's children
+            TreeNode* leftmostChild = node->right;
+            while (leftmostChild->left)
                 leftmostChild = leftmostChild->left;
 
             leftmostChild->left = successorChild;
 
+            delete successor;
             computeHeightandBalance(node);
             return node;
         }
@@ -386,6 +394,9 @@ void AvlTree::removeInorder(int n) {
     else
         remove(output.at(n));
 }
+
+
+
 
 
 int main() {
