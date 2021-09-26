@@ -38,13 +38,13 @@ class AvlTree {
 public: 
 
     AvlTree() : root(nullptr) {}
-    void insert(string& name, string& id); // done
-    void remove(string& id);               // done
-    void searchId(string& id);             // done
-    void searchName(string& name);         // done
-    void printInorder();                   // done
-    void printPreorder();                  // done
-    void printPostorder();                 // done
-    void printLevelCount();                // done
-    void removeInorder(int n);             // done
+    void insert(string& name, string& id); 
+    void remove(string& id);               
+    void searchId(string& id);             
+    void searchName(string& name);         
+    void printInorder();                   
+    void printPreorder();                  
+    void printPostorder();                 
+    void printLevelCount();                
+    void removeInorder(int n);             
 };

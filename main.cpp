@@ -34,7 +34,7 @@ int main() {
                 int spaceIndex = command.find(" ");
                 string index = command.substr(spaceIndex + 1, command.length() - 1);
 
-                // tree.removeInorder(stoi(index));
+                tree.removeInorder(stoi(index));
             }
             // remove command
             else {
