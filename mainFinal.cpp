@@ -82,8 +82,6 @@ TreeNode* AvlTree::rotateLeft(TreeNode* node) {
     newParent->left = node;
     node->right = grandchild;
 
-    if (node == root) root = newParent;
-
     // computing node's height and balance factor
     HeightBalance(node);
     HeightBalance(newParent);
@@ -98,8 +96,6 @@ TreeNode* AvlTree::rotateRight(TreeNode* node) {
     TreeNode* newParent = node->left;
     newParent->right = node;
     node->left = grandchild;
-
-    if (node == root) root = newParent;
 
     // computing node's height and balance factor
     HeightBalance(node);
@@ -181,7 +177,7 @@ void AvlTree::insert(string& name, string& id) {
         return;
     }
 
-    insertHelper(root, name, id);
+    root = insertHelper(root, name, id);
 }
 
 
@@ -234,10 +230,6 @@ TreeNode* AvlTree::removeHelper(TreeNode* node, string& id) {
                 replacement = node->left;
             else if (node->right)
                 replacement = node->right;
-            
-            // if we removed the root node
-            if (node == root) 
-                root = replacement;
 
             delete node;
             
@@ -260,7 +252,7 @@ TreeNode* AvlTree::removeHelper(TreeNode* node, string& id) {
 
 
 void AvlTree::remove(string& id) {
-    removeHelper(root, id);
+    root = removeHelper(root, id);
 }
 
 
