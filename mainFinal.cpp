@@ -21,6 +21,8 @@ class AvlTree {
     TreeNode* root;
 
     // helper functions
+    bool idValid(string& id);
+    bool nameValid(string& name);
     TreeNode* insertHelper(TreeNode* root, string& name, string& id);
     void HeightBalance(TreeNode* node);
     TreeNode* rotateLeft(TreeNode* node);
@@ -48,6 +50,40 @@ public:
     void removeInorder(int n);             
 };
 
+
+// returns true if input id is valid
+bool AvlTree::idValid(string& id) {
+
+    // if id is not 8 digits
+    if (id.length() != 8) {
+        cout << "unsuccessful" << endl;
+        return false;
+    }
+
+    // if id contains non-numbers
+    for (int i = 0; i < id.length(); i++) {
+        if (id[i] < '0' || id[i] > '9') {
+            cout << "unsuccessful" << endl;
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// returns true if input name is valid
+bool AvlTree::nameValid(string& name) {
+
+    // if name contains non-letters
+    for (int i = 0; i < name.length(); i++) {
+        if (!(name[i] >= 'a' && name[i] <= 'z') && !(name[i] >= 'A' && name[i] <= 'Z') && name[i] != ' ') {
+            cout << "unsuccessful" << endl;
+            return false;
+        }
+    }
+
+    return true;
+}
 
 
 // recalibrates node's height and balance factor
@@ -164,11 +200,8 @@ TreeNode* AvlTree::insertHelper(TreeNode* node, string& name, string& id) {
 
 void AvlTree::insert(string& name, string& id) {
 
-    // if id is not 8 digits
-    if (id.length() != 8) {
-        cout << "unsuccessful" << endl;
-        return;
-    }
+    if (!idValid(id)) return;
+    if (!nameValid(name)) return;
 
     // if tree is empty
     if (!root) {
@@ -252,6 +285,9 @@ TreeNode* AvlTree::removeHelper(TreeNode* node, string& id) {
 
 
 void AvlTree::remove(string& id) {
+
+    if (!idValid(id)) return;
+
     root = removeHelper(root, id);
 }
 
@@ -271,6 +307,9 @@ void AvlTree::searchIdHelper(TreeNode* node, string& id) {
 
 
 void AvlTree::searchId(string& id) {
+
+    if (!idValid(id)) return;
+
     searchIdHelper(root, id);
 }
 
@@ -289,6 +328,8 @@ void AvlTree::searchNameHelper(TreeNode* node, string& name, string& output) {
 
 
 void AvlTree::searchName(string& name) {
+
+    if (!nameValid(name)) return;
 
     string output;
     searchNameHelper(root, name, output);
