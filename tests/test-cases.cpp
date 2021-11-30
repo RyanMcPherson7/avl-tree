@@ -7,9 +7,7 @@ AvlTree tree;
 
 TEST_CASE( "Testing Balancing", "[level-count]" ) {
 
-    string name = "Ryan";
-    string id = "12341234";
-    tree.insert(name, id);
+    tree.insert("ryuan", "12341234");
     
 
     REQUIRE(tree.printLevelCount() == 1);
