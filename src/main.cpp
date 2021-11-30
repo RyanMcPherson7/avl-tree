@@ -1,4 +1,4 @@
-#include "avl-tree.h"
+#include "avl-tree.hpp"
 
 #define NC "\e[0m"
 #define CYN "\e[0;36m"

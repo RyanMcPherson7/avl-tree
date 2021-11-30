@@ -1,4 +1,4 @@
-#include "../src/avl-tree.h"
+#include "../src/avl-tree.hpp"
 
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
